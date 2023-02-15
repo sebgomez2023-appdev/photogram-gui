@@ -70,6 +70,27 @@ class PhotosController < ApplicationController
     # render({:template => "photo_templates/create.html.erb"})
   end
 
+  def comment
+    # input_author_id, input_body 
+
+    the_id = params.fetch("input_photo_id")
+    the_author = params.fetch("input_author_id")
+    the_comment = params.fetch("input_body")
+
+    a_new_comment = Comment.new
+
+    a_new_comment.id = the_id
+    a_new_comment.author_id = the_author
+    a_new_comment.body = the_comment
+
+    a_new_comment.save
+
+    redirect_to("/photos/" + the_id.to_s)
+
+    # render({:template => "photo_templates/new_comment.html.erb"})
+  end
+
+
  
 
 end
